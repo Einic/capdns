@@ -21,7 +21,6 @@ func main() {
 	domain := flag.String("domain","www.infvie.com","tcpdump custom grabs the specified domain name: capdns -domain www.infvie.com")
 	flag.Parse()
 	larray := strings.Split(*domain, ".")
-	//ret := [...] int {}
 	var ret []int
 
 	for lary := range larray {
@@ -39,7 +38,6 @@ func main() {
 	}
 	fmt.Println("")
 	fmt.Println("domain length:", len(ret))
-	//fmt.Println("Type:",reflect.TypeOf(ret))
 	fmt.Println("tcpdump filter:")
 	fmt.Printf("tcpdump -i any -nnX \"(udp and port 53 and (")
 	fmt.Printf("ip[%d]=0x%02x", 40, ret[0])
