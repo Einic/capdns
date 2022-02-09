@@ -22,7 +22,6 @@ func main() {
 	flag.Parse()
 	larray := strings.Split(*domain, ".")
 	var ret []int
-
 	for lary := range larray {
 		ret = append(ret, len(larray[lary]))
 		for ary := range larray[lary] {
