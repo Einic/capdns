@@ -19,9 +19,9 @@ To install the dependencies under CentOS
 `~./capdns -domain www.infvie.com (default "www.infvie.com")`
 
 
-![Image text](https://mirrors.infvie.org//image/capdns/20220209125233.png)
+![Image text](https://mirrors.infvie.org/image/capdns/20220209125233.png)
 
-![Image text](https://mirrors.infvie.org//image/capdns/20220209125149.png)
+![Image text](https://mirrors.infvie.org/image/capdns/20220209125149.png)
 
 ## Inspiration
 https://github.com/DNS-OARC/dnscap
