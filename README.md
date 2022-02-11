@@ -16,7 +16,7 @@ To install the dependencies under CentOS
 `yum -y install tcpdump`
 
 ## Instructions
-`~./capdns -domain www.infvie.com (default "www.infvie.com")`
+`~./capdns -h`
 
 
 ![Image text](https://mirrors.infvie.org/image/capdns/20220209125233.png)

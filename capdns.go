@@ -33,8 +33,9 @@ func init() {
 	flag.Parse()
 }
 
-func fret() []int {
+func dascii() []int {
 	larray = strings.Split(domain, ".")
+	//ret := [...] int {}
 	var ret []int
 	for lary = range larray {
 		ret = append(ret, len(larray[lary]))
@@ -50,22 +51,23 @@ func fret() []int {
 func main() {
 	fmt.Println("domain：", domain)
 	fmt.Printf("domain hex: 0x")
-	for _, vrx := range fret() {
+	for _, vrx := range dascii() {
 		fmt.Printf("%02x", vrx)
 	}
 	fmt.Println("")
-	fmt.Println("domain length:", len(fret()))
+	fmt.Println("domain length:", len(dascii()))
+	//fmt.Println("Type:",reflect.TypeOf(ret))
 	fmt.Println("tcpdump filter:")
 	fmt.Printf("tcpdump -i any -nnX \"(udp and port 53 and (")
-	fmt.Printf("ip[%d]=0x%02x", 40, fret()[0])
-	for x := 1; x < len(fret()); x++ {
-		fmt.Printf(" and ip[%d]=0x%02x", 40+x, fret()[x])
+	fmt.Printf("ip[%d]=0x%02x", 40, dascii()[0])
+	for x := 1; x < len(dascii()); x++ {
+		fmt.Printf(" and ip[%d]=0x%02x", 40+x, dascii()[x])
 	}
 	fmt.Printf("))")
 	fmt.Printf(" or (ip[9]=0xfd and (")
-	fmt.Printf("ip[%d]=0x%02x", 48, fret()[0])
-	for y := 1; y < len(fret()); y++ {
-		fmt.Printf(" and ip[%d]=0x%02x", 48+y, fret()[y])
+	fmt.Printf("ip[%d]=0x%02x", 48, dascii()[0])
+	for y := 1; y < len(dascii()); y++ {
+		fmt.Printf(" and ip[%d]=0x%02x", 48+y, dascii()[y])
 	}
 	fmt.Printf("))\"")
 	fmt.Println("")
