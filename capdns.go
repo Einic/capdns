@@ -14,10 +14,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"strings"
 )
 
 var (
+	h      bool
 	domain string
 	lary   int
 	larray []string
@@ -26,11 +28,10 @@ var (
 func init() {
 	const (
 		defaultdomain string = "www.infvie.com"
-		usage         string = "tcpdump custom grabs the specified domain name"
+		usages        string = "send `domain` to tcpdump filter custom grabs the specified domain name"
 	)
-	flag.StringVar(&domain, "domain", defaultdomain, usage)
-	flag.StringVar(&domain, "d", defaultdomain, usage+" (shorthand)")
-	flag.Parse()
+	flag.StringVar(&domain, "d", defaultdomain, usages)
+	flag.Usage = usage
 }
 
 func dascii() []int {
@@ -47,15 +48,34 @@ func dascii() []int {
 	return ret
 }
 
+func usage() {
+	fmt.Fprintf(os.Stderr, `capdns version: capdns/v1.0.0
+Usage: capdns [-d domain]
+
+Options:
+`)
+	flag.PrintDefaults()
+}
+
 func main() {
+	flag.Parse()
+
+	if h {
+		flag.Usage()
+	}
+
 	fmt.Println("domain：", domain)
+
 	fmt.Printf("domain hex: 0x")
 	for _, vrx := range dascii() {
 		fmt.Printf("%02x", vrx)
 	}
 	fmt.Println("")
+
 	fmt.Println("domain length:", len(dascii()))
+
 	fmt.Println("tcpdump filter:")
+
 	fmt.Printf("tcpdump -i any -nnX \"(udp and port 53 and (")
 	fmt.Printf("ip[%d]=0x%02x", 40, dascii()[0])
 	for x := 1; x < len(dascii()); x++ {
