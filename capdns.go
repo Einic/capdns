@@ -32,7 +32,6 @@ func dinit() string {
 
 func fret() []int {
 	larray = strings.Split(*ftdomain, ".")
-	//ret := [...] int {}
 	var ret []int
 	for lary = range larray {
 		ret = append(ret, len(larray[lary]))
@@ -53,7 +52,6 @@ func main() {
 	}
 	fmt.Println("")
 	fmt.Println("domain length:", len(fret()))
-	//fmt.Println("Type:",reflect.TypeOf(ret))
 	fmt.Println("tcpdump filter:")
 	fmt.Printf("tcpdump -i any -nnX \"(udp and port 53 and (")
 	fmt.Printf("ip[%d]=0x%02x", 40, fret()[0])
