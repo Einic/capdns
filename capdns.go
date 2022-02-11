@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	h      bool
+	help   string
 	domain string
 	lary   int
 	larray []string
@@ -28,10 +28,21 @@ var (
 func init() {
 	const (
 		defaultdomain string = "www.infvie.com"
-		usages        string = "send `domain` to tcpdump filter custom grabs the specified domain name"
+		defaultusage  string = "send `domain` to tcpdump filter custom grabs the specified domain name"
+		helpusage     string = "this help"
 	)
-	flag.StringVar(&domain, "d", defaultdomain, usages)
+	flag.StringVar(&help, "h", "", helpusage)
+	flag.StringVar(&domain, "d", defaultdomain, defaultusage)
 	flag.Usage = usage
+}
+
+func usage() {
+	fmt.Fprintf(os.Stderr, `capdns version: capdns/v1.0.0
+Usage: capdns [-h help] [-d domain]
+
+Options:
+`)
+	flag.PrintDefaults()
 }
 
 func dascii() []int {
@@ -48,19 +59,9 @@ func dascii() []int {
 	return ret
 }
 
-func usage() {
-	fmt.Fprintf(os.Stderr, `capdns version: capdns/v1.0.0
-Usage: capdns [-d domain]
-
-Options:
-`)
-	flag.PrintDefaults()
-}
-
 func main() {
 	flag.Parse()
-
-	if h {
+	if help == "h" || help == "help" {
 		flag.Usage()
 	}
 
