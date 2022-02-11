@@ -18,20 +18,23 @@ import (
 )
 
 var (
-	ftdomain *string
-	lary     int
-	larray   []string
+	domain string
+	lary   int
+	larray []string
 )
 
-func dinit() string {
-	domain := flag.String("domain", "www.infvie.com", "tcpdump custom grabs the specified domain name: capdns -domain www.infvie.com")
+func init() {
+	const (
+		defaultdomain string = "www.infvie.com"
+		usage         string = "tcpdump custom grabs the specified domain name"
+	)
+	flag.StringVar(&domain, "domain", defaultdomain, usage)
+	flag.StringVar(&domain, "d", defaultdomain, usage+" (shorthand)")
 	flag.Parse()
-	ftdomain = domain
-	return *ftdomain
 }
 
 func fret() []int {
-	larray = strings.Split(*ftdomain, ".")
+	larray = strings.Split(domain, ".")
 	var ret []int
 	for lary = range larray {
 		ret = append(ret, len(larray[lary]))
@@ -45,7 +48,7 @@ func fret() []int {
 }
 
 func main() {
-	fmt.Println("domain：", dinit())
+	fmt.Println("domain：", domain)
 	fmt.Printf("domain hex: 0x")
 	for _, vrx := range fret() {
 		fmt.Printf("%02x", vrx)
