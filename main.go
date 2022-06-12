@@ -2,7 +2,7 @@
  * @Author: Einic <einicyeo AT gmail.com>
  * @Description:
  * @File: capdns
- * @Version: 1.0.0
+ * @Version: 0.1.0
  * @Date: 2022/2/8 16:40
  * @BLOG:  https://www.infvie.com
  * @Project home page:
@@ -27,7 +27,7 @@ var (
 )
 
 const (
-	VERSION = "v1.0.0"
+	VERSION = "v0.1.0"
 )
 
 func init() {
@@ -103,7 +103,7 @@ func Domain() {
 
 func main() {
 	flag.Parse()
-	
+
 	nlag = flag.NFlag()
 
 	if version {
