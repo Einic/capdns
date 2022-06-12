@@ -33,10 +33,10 @@ const (
 func init() {
 	flag.BoolVar(&version, "v", false, "`version`: show version")
 	flag.StringVar(&domain, "d", "www.infvie.com", "`domain`: tcpdump filter custom grabs the specified domain name")
-	flag.Usage = usage
+	flag.Usage = Usage
 }
 
-func usage() {
+func Usage() {
 	nargs := cap(os.Args)
 	if nlag != 0 {
 		Domain()
@@ -103,11 +103,14 @@ func Domain() {
 
 func main() {
 	flag.Parse()
+	
 	nlag = flag.NFlag()
-	flag.Usage()
 
 	if version {
 		fmt.Println(VERSION)
 		os.Exit(0)
 	}
+
+	flag.Usage()
+
 }
